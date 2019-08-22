@@ -1,0 +1,12 @@
+{% for a in c %}
+<ul>
+{% if a.id == b  %}
+<h1>{{ a.name }}</h1>
+<li>{{ a.state }}</li>
+<li>{{ a.city }}</li>
+<li>{{ a.college }}</li>
+<li>{{ a.age }}</li>
+</ul>
+{% endif %}
+{% endfor %}
+<h1><a href="/music/statistics/">Survey Results</a></h1>
