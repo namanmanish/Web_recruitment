@@ -49,16 +49,19 @@ def statistics(request):
  f=['']*len(City.objects.all())
  for state in State.objects.all():
   a[i]=a[i]*100/count
+  a[i]=round(a[i],2)
   d[i] = state.name + " : " + str(a[i])
   i=i+1
  i=0
  for college in College.objects.all():
   b[i]=b[i]*100/count
+  b[i]=round(b[i],2)
   e[i] = college.name + " : " + str(b[i])
   i=i+1
  i=0
  for city in City.objects.all():
   c[i]=c[i]*100/count
+  c[i]=round(c[i],2)
   f[i] = city.name + " : " + str(c[i])
   i=i+1
  r=0
@@ -76,8 +79,15 @@ def new(request):
          return render(request, 'music/new.html', {'form': form})
 def ajax(request):
  state_id=request.GET.get('state_id')
- cities=City.objects.filter(state_name=state_id)
- data = {'cities': cities}
+ states=State.objects.filter(name=state_id)
+ for i in (states):
+  cities=City.objects.filter(state_name=i.id)
+ a=['']*len(cities)
+ i=0
+ for e in (cities):
+  a[i]=e.name
+  i=i+1  
+ data = {'rooms': a}
  return JsonResponse(data)
     
   
